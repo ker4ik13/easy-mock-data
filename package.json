@@ -1,0 +1,23 @@
+{
+  "name": "mock-data",
+  "version": "1.0.0",
+  "description": "Mock data library is a lightweight library designed to simplify the process of creating mock data during the development, testing and prototyping of your web applications.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "npm run build -- --watch",
+    "test": "ts-node src/test.ts"
+  },
+  "keywords": [
+    "Mock",
+    "data",
+    "easy"
+  ],
+  "author": "ker4ik13 <kireev.kirill2004@mail.ru>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.5.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  }
+}

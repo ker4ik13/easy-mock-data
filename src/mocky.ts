@@ -1,14 +1,13 @@
 import { DateOptions } from "./types/DateOptions";
 import { User } from "./types/User";
 import { Product } from "./types/Product";
+import { MockDataOptions } from "./types/MockData";
 
-class MockData {
-
+class MockData implements MockDataOptions {
 	// The string function returns a random string depending on the passed length and options
 	string (length: number, options?: {
 		isFirstLetterCapitalized?: boolean,
 		isUpperCase?: boolean,
-		everyWordIsCapitalized?: boolean,
 	}): string {
 		let result = '';
 		const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -79,15 +78,14 @@ class MockData {
 	// The return value can be selected in the options
 	dateInRange (start: Date, end: Date, options: DateOptions): Date | number | string {
 		const randomTimestamp = this.numberInRange(start.getTime(), end.getTime());
-		if(options.returnStandartDate){
-			return new Date(randomTimestamp);
-		} else if (options.returnIsoDate){
-			return new Date(randomTimestamp).toISOString();
-		} else if (options.returnMiliseconds) {
-			return new Date(randomTimestamp).getTime();
-		}
 
-		return new Date(randomTimestamp);
+		if (options.returnIsoDate){
+			return new Date(randomTimestamp).toISOString();
+		} else if (options.returnSeconds) {
+			return new Date(randomTimestamp).getTime();
+		} else {
+			return new Date(randomTimestamp);
+		}
 	}
 
 	// The name function returns a random name from an array of 10 male and 10 female names
@@ -188,6 +186,8 @@ class MockData {
 		return product;
 	}
 }
+
+console.log()
 
 export = MockData;
 

@@ -1,5 +1,5 @@
 {
-  "name": "mock-data",
+  "name": "easy-mock-data",
   "version": "1.0.0",
   "description": "A handy tool for generating fake data.",
   "main": "dist/mockData.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ker4ik13/mock-data"
+    "url": "git+https://github.com/ker4ik13/easy-mock-data"
   },
   "keywords": [
     "Mock",
@@ -24,14 +24,14 @@
   "author": "ker4ik13 <kireev.kirill2004@mail.ru>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ker4ik13/mock-data/issues"
+    "url": "https://github.com/ker4ik13/easy-mock-data/issues"
   },
   "husky": {
     "hooks": {
       "pre-commit": "npm run build && npm run test"
     }
   },
-  "homepage": "https://github.com/ker4ik13/mock-data#readme",
+  "homepage": "https://github.com/ker4ik13/easy-mock-data#readme",
   "devDependencies": {
     "@babel/core": "^7.22.10",
     "@babel/preset-env": "^7.22.10",

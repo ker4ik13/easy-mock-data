@@ -19,8 +19,8 @@ const randomString = mockData.string(10); // OHKGxFarhs
 
 // Генерация мокового текста из 5 слов, первая буква в тексте заглавная
 const randomText = mockData.text(5, {
-    capitalizeFirstLetter: true,
-}); // Wildberrymango mango lemon wildberry
+    capitalizeFirstLetter: true
+}); // Wildberry mango mango lemon wildberry
 
 // Генерация случайного числа из 3-х цифр
 const randomNumber = mockData.number(3); // 172

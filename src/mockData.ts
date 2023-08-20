@@ -37,32 +37,31 @@ class MockData implements MockDataOptions{
 		let result = '';
 		const words = [
 			'apple', 'banana', 'cherry', 'date', 'wildberry', 'fig',
-			'grape', 'honeydew', 'kiwi', 'lemon', 'mango', 'nectarine'];
+			'grape', 'honeydew', 'kiwi', 'lemon', 'mango', 'nectarine'
+		];
 		const wordsLength = words.length;
 
 		for (let i = 0; i < wordCount; i++) {
 			const randomIndex = Math.floor(Math.random() * wordsLength);
 			const word = words[randomIndex];
 
+			let formattedWord = word;
+
 			if (i === 0 && options?.capitalizeFirstLetter) {
-				result += word.charAt(0).toUpperCase() + word.slice(1);
-			} else if(options?.everyWordIsCapitalized) {
-				const formattedWord = word.charAt(0).toUpperCase() + word.slice(1);
-				result += formattedWord;
-				if(i < wordCount){
-					result += ' ';
-				}
-			} else {
-				result += word;
-				if(i < wordCount - 1){
-					result += ' ';
-				}
+				formattedWord = word.charAt(0).toUpperCase() + word.slice(1);
+			} else if (options?.everyWordIsCapitalized) {
+				formattedWord = word.charAt(0).toUpperCase() + word.slice(1);
 			}
 
-			// TASK доделать uppercase
-			if (options?.uppercaseWords) {
-				result = result.split('').map(letter => letter.toUpperCase()).join('');
+			result += formattedWord;
+
+			if (i < wordCount - 1) {
+				result += ' ';
 			}
+		}
+
+		if (options?.uppercaseWords) {
+			result = result.toUpperCase();
 		}
 
 		return result;

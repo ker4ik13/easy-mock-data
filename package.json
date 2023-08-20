@@ -1,6 +1,6 @@
 {
   "name": "easy-mock-data",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "A handy tool for generating fake data.",
   "main": "dist/mockData.js",
   "types": "dist/types/MockData.d.ts",

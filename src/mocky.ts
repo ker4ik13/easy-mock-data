@@ -1,24 +1,10 @@
-interface GenerateRandomDateOptions {
-	returnStandartDate?: boolean,
-	returnIsoDate?: boolean,
-	returnMiliseconds?: boolean,
-}
-
-interface User {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: string;
-}
-
-interface Product {
-  name: string;
-  category: string;
-  price: number;
-}
+import { DateOptions } from "./types/DateOptions";
+import { User } from "./types/User";
+import { Product } from "./types/Product";
 
 class MockData {
 
+	// The string function returns a random string depending on the passed length and options
 	string (length: number, options?: {
 		isFirstLetterCapitalized?: boolean,
 		isUpperCase?: boolean,
@@ -41,14 +27,16 @@ class MockData {
 
 		return result;
 	}
-
+	
+	// The number function returns a random number depending on the length passed
 	number (length: number): number {
 		const min = Math.pow(10, length - 1);
 		const max = Math.pow(10, length) - 1;
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 
-	loremText (wordCount: number, options?: {
+	// The text function returns a random text depending on the number of words and options passed.
+	text (wordCount: number, options?: {
 		capitalizeFirstLetter?: boolean,
 		everyWordIsCapitalized? :boolean,
 		uppercaseWords?: boolean,
@@ -82,12 +70,15 @@ class MockData {
 		return result;
 	}
 
-	getRandomNumber (min: number, max: number): number {
+	// numberInRange function returns a random number in the range from the passed minimum and maximum values
+	numberInRange (min: number, max: number): number {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 
-	generateRandomDate (start: Date, end: Date, options: GenerateRandomDateOptions): Date | number | string {
-		const randomTimestamp = this.getRandomNumber(start.getTime(), end.getTime());
+	// The dateInRange function returns a random date between the given start and end dates.
+	// The return value can be selected in the options
+	dateInRange (start: Date, end: Date, options: DateOptions): Date | number | string {
+		const randomTimestamp = this.numberInRange(start.getTime(), end.getTime());
 		if(options.returnStandartDate){
 			return new Date(randomTimestamp);
 		} else if (options.returnIsoDate){
@@ -99,26 +90,29 @@ class MockData {
 		return new Date(randomTimestamp);
 	}
 
-	generateRandomName (): string {
+	// The name function returns a random name from an array of 10 male and 10 female names
+	name (): string {
 		const names: string[] = ['John', 'Michael', 'Robert', 'David', 'James', 'William', 'Charles', 'Joseph', 'Richard', 'Daniel', 'Thomas', 'Matthew', 'Christopher', 'Andrew', 'Brian', 'Kevin', 'Anthony', 'Steven', 'Mark', 'Paul', 'Mary', 'Patricia', 'Jennifer', 'Linda', 'Elizabeth', 'Barbara', 'Susan', 'Jessica', 'Sarah', 'Karen', 'Nancy', 'Lisa', 'Margaret', 'Betty', 'Dorothy', 'Sandra', 'Ashley', 'Kimberly', 'Donna', 'Emily'];
-		const randomIndex: number = this.getRandomNumber(0, names.length - 1);
+		const randomIndex: number = this.numberInRange(0, names.length - 1);
 		return names[randomIndex];
 	}
 
-	generateRandomLastName (): string {
+	// The lastName function returns a random last name from an array of 20 last names
+	lastName (): string {
 	const lastNames: string[] = ['Smith', 'Johnson', 'Williams', 'Jones', 'Brown', 'Davis', 'Miller', 'Wilson', 'Moore', 'Taylor', 'Anderson', 'Thomas', 'Jackson', 'White', 'Harris', 'Martin', 'Thompson', 'Garcia', 'Martinez', 'Robinson'];
-		const randomIndex: number = this.getRandomNumber(0, lastNames.length - 1);
+		const randomIndex: number = this.numberInRange(0, lastNames.length - 1);
 		return lastNames[randomIndex];
 	}
 
-	generateRandomFullName (): string {
-		const lastNames: string[] = ['Smith', 'Johnson', 'Williams', 'Jones', 'Brown', 'Davis', 'Miller', 'Wilson', 'Moore', 'Taylor', 'Anderson', 'Thomas', 'Jackson', 'White', 'Harris', 'Martin', 'Thompson', 'Garcia', 'Martinez', 'Robinson'];
-		const firstName: string = this.generateRandomName();
-		const randomIndex: number = this.getRandomNumber(0, lastNames.length - 1);
-		return `${firstName} ${lastNames[randomIndex]}`;
+	// fullName function returns the full random name and surname
+	fullName (): string {
+		const lastNames: string = this.lastName();
+		const firstName: string = this.name();
+		return `${firstName} ${lastNames}`;
 	}
 
-	generateRandomAddress(): string {
+	// The address function returns a random address
+	address(): string {
 		const streets = ['Main St', 'Oak Ave', 'Maple Ln', 'Cedar Rd', 'Elm St'];
 		const houseNumbers = ['123', '456', '789', '101', '202'];
 		const randomStreetIndex = Math.floor(Math.random() * streets.length);
@@ -130,10 +124,11 @@ class MockData {
 		return `${houseNumber} ${street}`;
 	}
 
-	generateRandomEmail (desiredName?: string): string {
+	// The email function returns a random email. Optional parameter name
+	email (desiredName?: string): string {
 		const domains = ['example.com','test.net','sample.org','website.dev','myapp.io','company.biz','blog.info','store.shop','portfolio.design','community.online'];
-		const randomIndex = this.getRandomNumber(0, domains.length - 1);
-		const randomName = this.generateRandomName().toLowerCase();
+		const randomIndex = this.numberInRange(0, domains.length - 1);
+		const randomName = this.name().toLowerCase();
 
 		if(desiredName){
 			return `${desiredName}@${domains[randomIndex]}`;
@@ -142,7 +137,8 @@ class MockData {
 		return `${randomName}@${domains[randomIndex]}`;
 	}
 
-	generateRandomPhoneNumber(countryCode: string): string {
+	// The phoneNumber functions return the phone number with country code that was passed to the function.
+	phoneNumber(countryCode: string): string {
 		let phoneNumber = '';
 
 		if (countryCode.toUpperCase() === 'US') {
@@ -160,21 +156,23 @@ class MockData {
 		return phoneNumber;
 	}
 
-	generateRandomUser(countryCode: string): User {
-    const firstName = this.generateRandomName();
+	// The user function returns a user object consisting of the fields: firstName, lastName, phoneNumber and email
+	user(countryCode: string): User {
+    	const firstName = this.name();
 
-    const user: User = {
-      firstName,
-      lastName: this.generateRandomLastName(),
-      email: this.generateRandomEmail(firstName),
-      phoneNumber: this.generateRandomPhoneNumber(countryCode)
-    };
+		const user: User = {
+			firstName,
+			lastName: this.lastName(),
+			phoneNumber: this.phoneNumber(countryCode),
+			email: this.email(firstName),
+		};
 
-    return user;
-  }
+    	return user;
+	}
 
+	// product function returns a new product consisting of the fields: name, category, price and description
 	// Доработать продукт
-	generateRandomProduct(): Product {
+	product (): Product {
 		const categories = ['Electronics', 'Clothing', 'Home', 'Beauty', 'Sports'];
 		const randomCategory = categories[Math.floor(Math.random() * categories.length)];
 
@@ -182,11 +180,14 @@ class MockData {
 			name: this.string(5),
 			category: randomCategory,
 			price: Math.floor(Math.random() * 10000) + 100,
+			description: this.text(20, {
+				capitalizeFirstLetter: true,
+			})
 		};
 
 		return product;
 	}
 }
 
-module.exports = new MockData;
+export = MockData;
 

@@ -2,9 +2,9 @@
   "name": "mock-data",
   "version": "1.0.0",
   "description": "A handy tool for generating fake data.",
-  "main": "dist/mocky.js",
-  "types": "dist/types/mocky.d.ts",
-  "module": "dist/mocky.js",
+  "main": "dist/mockData.js",
+  "types": "dist/types/MockData.d.ts",
+  "module": "dist/mockData.js",
   "prepublish": "npm run build && npm run test",
   "scripts": {
     "dev": "webpack --env development --watch",

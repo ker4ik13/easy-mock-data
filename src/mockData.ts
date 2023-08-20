@@ -1,9 +1,10 @@
-import { DateOptions } from "./types/DateOptions";
-import { User } from "./types/User";
-import { Product } from "./types/Product";
-import { MockDataOptions } from "./types/MockData";
+import { DateOptions } from "./types/types";
+import { User } from "./types/types";
+import { Product } from "./types/types";
+import { MockDataOptions } from "./types/MockData.d";
 
-class MockData implements MockDataOptions {
+class MockData implements MockDataOptions{
+
 	// The string function returns a random string depending on the passed length and options
 	string (length: number, options?: {
 		isFirstLetterCapitalized?: boolean,
@@ -26,13 +27,6 @@ class MockData implements MockDataOptions {
 
 		return result;
 	}
-	
-	// The number function returns a random number depending on the length passed
-	number (length: number): number {
-		const min = Math.pow(10, length - 1);
-		const max = Math.pow(10, length) - 1;
-		return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
 
 	// The text function returns a random text depending on the number of words and options passed.
 	text (wordCount: number, options?: {
@@ -42,8 +36,8 @@ class MockData implements MockDataOptions {
 	}): string {
 		let result = '';
 		const words = [
-			'apple', 'banana', 'cherry', 'date', 'wildberry', 'fig', 'grape', 'honeydew', 'kiwi', 'lemon', 'mango', 'nectarine'
-		];
+			'apple', 'banana', 'cherry', 'date', 'wildberry', 'fig',
+			'grape', 'honeydew', 'kiwi', 'lemon', 'mango', 'nectarine'];
 		const wordsLength = words.length;
 
 		for (let i = 0; i < wordCount; i++) {
@@ -55,18 +49,30 @@ class MockData implements MockDataOptions {
 			} else if(options?.everyWordIsCapitalized) {
 				const formattedWord = word.charAt(0).toUpperCase() + word.slice(1);
 				result += formattedWord;
-				result += ' ';
+				if(i < wordCount){
+					result += ' ';
+				}
 			} else {
 				result += word;
-				result += ' ';
+				if(i < wordCount - 1){
+					result += ' ';
+				}
 			}
 
+			// TASK доделать uppercase
 			if (options?.uppercaseWords) {
 				result = result.split('').map(letter => letter.toUpperCase()).join('');
 			}
 		}
 
 		return result;
+	}
+	
+	// The number function returns a random number depending on the length passed
+	number (length: number): number {
+		const min = Math.pow(10, length - 1);
+		const max = Math.pow(10, length) - 1;
+		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 
 	// numberInRange function returns a random number in the range from the passed minimum and maximum values
@@ -187,7 +193,4 @@ class MockData implements MockDataOptions {
 	}
 }
 
-console.log()
-
-export = MockData;
-
+export default new MockData()

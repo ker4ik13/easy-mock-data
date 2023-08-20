@@ -1,8 +1,8 @@
-import { User } from "./User";
-import { Product } from "./Product";
-import { DateOptions } from "./DateOptions";
+import { User } from "./types";
+import { Product } from "./types";
+import { DateOptions } from "./types";
 
-export declare type MockDataOptions = {
+export interface MockDataOptions {
 
     /**
 	 * @returns {string} a random string of the specified length

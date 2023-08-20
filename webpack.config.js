@@ -1,5 +1,4 @@
 const path = require("path");
-const ESLintPlugin = require("eslint-webpack-plugin");
 
 module.exports = ({ development }) => ({
   entry: "./src/mocky.ts",
@@ -26,5 +25,5 @@ module.exports = ({ development }) => ({
       },
     ],
   },
-  plugins: [new ESLintPlugin({ extensions: ["ts"] })],
+  plugins: [{ extensions: ["ts"] }],
 });

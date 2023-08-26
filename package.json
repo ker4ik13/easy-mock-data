@@ -8,7 +8,7 @@
   "prepublish": "npm run build && npm run test",
   "scripts": {
     "dev": "webpack --env development --watch",
-    "build": "webpack --env production && npm run docs",
+    "build": "webpack --env production",
     "test:unit": "jest"
   },
   "repository": {

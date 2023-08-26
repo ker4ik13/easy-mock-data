@@ -1,9 +1,10 @@
-name: Mock Data Actions
+name: Release Actions
+# All tests
 on:
   push:
-    branches: [main]
+    branches: [release]
   pull_request:
-    branches: [main]
+    branches: [release]
 jobs:
   init:
     runs-on: ubuntu-latest

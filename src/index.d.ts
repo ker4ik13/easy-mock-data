@@ -1,6 +1,3 @@
-import mockData from './index';
+import { MockDataOptions } from './types/mockData.d';
+declare const mockData: MockDataOptions;
 export { mockData };
-declare const _default: {
-    mockData: typeof mockData;
-};
-export default _default;

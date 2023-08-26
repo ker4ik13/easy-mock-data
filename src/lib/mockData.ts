@@ -1,7 +1,7 @@
 import type { DateOptions, User, Product } from "../types/interfaces";
-import type { MockDataOptions } from "../types/mockData.d";
+import type { IMockData } from "../types/IMockData";
 
-class MockData implements MockDataOptions{
+class MockData implements IMockData{
 
 	// The string function returns a random string depending on the passed length and options
 	string (length: number, options?: {

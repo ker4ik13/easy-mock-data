@@ -1,4 +1,4 @@
-import mockData from "./lib/mockData";
+import mockData from "./lib/MockData";
 
 export {
     mockData,

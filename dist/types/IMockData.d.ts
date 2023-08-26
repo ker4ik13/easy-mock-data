@@ -1,6 +1,6 @@
 import { User, Product, DateOptions } from "./interfaces";
 
-export interface MockDataOptions {
+export interface IMockData {
 
     /**
 	 * @returns {string} a random string of the specified length

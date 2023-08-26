@@ -1,3 +1,4 @@
-import { MockDataOptions } from './types/mockData.d';
-declare const mockData: MockDataOptions;
+import { IMockData } from "./types/IMockData.d";
+
+declare const mockData: IMockData;
 export { mockData };

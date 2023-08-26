@@ -1,9 +1,9 @@
 {
   "name": "easy-mock-data",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A handy tool for generating fake data.",
   "main": "dist/index.js",
-  "types": "dist/types/MockData.d.ts",
+  "types": "dist/index.d.ts",
   "module": "dist/index.js",
   "prepublish": "npm run build && npm run test",
   "scripts": {

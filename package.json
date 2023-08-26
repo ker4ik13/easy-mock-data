@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "webpack --env development --watch",
     "build": "webpack --env production && npm run docs",
-    "test": "jest"
+    "test:unit": "jest"
   },
   "repository": {
     "type": "git",

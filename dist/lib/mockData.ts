@@ -1,5 +1,5 @@
-import { DateOptions, User, Product } from "../types/interfaces";
-import { MockDataOptions } from "../types/mockData";
+import type { DateOptions, User, Product } from "../types/interfaces";
+import type { MockDataOptions } from "../types/mockData.d";
 
 class MockData implements MockDataOptions{
 

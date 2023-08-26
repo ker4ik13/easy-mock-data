@@ -1,6 +1,4 @@
-import { User } from "./types";
-import { Product } from "./types";
-import { DateOptions } from "./types";
+import { User, Product, DateOptions } from "./types";
 
 export interface MockDataOptions {
 

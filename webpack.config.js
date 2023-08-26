@@ -1,11 +1,11 @@
 const path = require("path");
 
 module.exports = ({ development }) => ({
-  entry: "./src/mockData.ts",
+  entry: "./src/index.ts",
   devtool: development ? "inline-source-map" : false,
   mode: development ? "development" : "production",
   output: {
-    filename: "mockData.js",
+    filename: "index.js",
     path: path.resolve(__dirname, "dist"),
     library: "mock-data",
     libraryExport: "default",

@@ -1,10 +1,10 @@
 {
   "name": "easy-mock-data",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A handy tool for generating fake data.",
-  "main": "dist/mockData.js",
+  "main": "dist/index.js",
   "types": "dist/types/MockData.d.ts",
-  "module": "dist/mockData.js",
+  "module": "dist/index.js",
   "prepublish": "npm run build && npm run test",
   "scripts": {
     "dev": "webpack --env development --watch",

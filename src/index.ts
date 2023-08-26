@@ -1,7 +1,7 @@
 import { DateOptions } from "./types/types";
 import { User } from "./types/types";
 import { Product } from "./types/types";
-import { MockDataOptions } from "./types/MockData.d";
+import { MockDataOptions } from "./types/MockData";
 
 class MockData implements MockDataOptions{
 
@@ -192,4 +192,5 @@ class MockData implements MockDataOptions{
 	}
 }
 
-export default new MockData()
+export const mockData = new MockData();
+export {MockDataOptions} from './types/MockData';

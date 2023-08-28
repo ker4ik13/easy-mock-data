@@ -171,3 +171,5 @@ describe('return value must be an object', () => {
         expect(mockData.product().price).toBeGreaterThan(999);
     });
 });
+
+console.log(mockData.password());

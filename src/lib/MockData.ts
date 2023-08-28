@@ -141,11 +141,11 @@ class MockData implements IMockData{
 		const randomIndex = Math.floor(Math.random() * streets.length);
 
 		return {
-			street: streets[randomIndex],
-			city: cities[randomIndex],
+			country: countries[randomIndex],
 			state: states[randomIndex],
+			city: cities[randomIndex],
+			street: streets[randomIndex],
 			postalCode: postalCodes[randomIndex],
-			country: countries[randomIndex]
 		};
 	}
 

@@ -4,7 +4,7 @@
 
 Full TypeScript Support
 
-- [RU Documentation](https://github.com/ker4ik13/easy-mock-data/wiki/Documentation)
+- [RU Documentation](https://github.com/ker4ik13/easy-mock-data/wiki/Documentation-RU)
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Import](#import)

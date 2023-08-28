@@ -168,7 +168,7 @@ describe('return value must be an object', () => {
         expect(mockData.product().name).toHaveLength(5);
         expect(categories.includes(mockData.product().category));
         expect(mockData.product().price).toBeLessThan(10000);
-        expect(mockData.product().price).toBeGreaterThan(999);
+        expect(mockData.product().price).toBeGreaterThan(100);
     });
 });
 

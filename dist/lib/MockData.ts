@@ -1,9 +1,11 @@
-import type { DateOptions, User, Product } from "../types/interfaces";
-import { IMockData } from "../types/IMockData";
+import type { IMockData } from "../types/IMockData";
+import { IDateOptions } from "../types/IDateOptions";
+import { IUser } from "../types/IUser";
+import { IProduct } from "../types/IProduct";
+import { IAddress } from "../types/IAddress";
 
 class MockData implements IMockData{
 
-	// The string function returns a random string depending on the passed length and options
 	string (length: number, options?: {
 		isFirstLetterCapitalized?: boolean,
 		isUpperCase?: boolean,
@@ -26,7 +28,6 @@ class MockData implements IMockData{
 		return result;
 	}
 
-	// The text function returns a random text depending on the number of words and options passed.
 	text (wordCount: number, options?: {
 		capitalizeFirstLetter?: boolean,
 		everyWordIsCapitalized? :boolean,
@@ -65,21 +66,42 @@ class MockData implements IMockData{
 		return result;
 	}
 	
-	// The number function returns a random number depending on the length passed
 	number (length: number): number {
 		const min = Math.pow(10, length - 1);
 		const max = Math.pow(10, length) - 1;
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 
-	// numberInRange function returns a random number in the range from the passed minimum and maximum values
+	numberArray(length: number): number[] {
+		const result: number[] = [];
+		for(let i = 0; i < length; i++){
+			if(i % 2 === 0){
+				result.push(this.number(5));
+			} else {
+				result.push(this.number(4));
+			}
+		}
+		return result;
+	}
+
+	stringArray(length: number): string[] {
+		let result: string[] = [];
+
+		for(let i = 0; i < length; i++){
+			if(i % 2 === 0){
+				result.push(this.string(7));
+			} else {
+				result.push(this.string(9));
+			}
+		}
+		return result;
+	}
+
 	numberInRange (min: number, max: number): number {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 
-	// The dateInRange function returns a random date between the given start and end dates.
-	// The return value can be selected in the options
-	dateInRange (start: Date, end: Date, options: DateOptions): Date | number | string {
+	dateInRange (start: Date, end: Date, options: IDateOptions): Date | number | string {
 		const randomTimestamp = this.numberInRange(start.getTime(), end.getTime());
 
 		if (options.returnIsoDate){
@@ -91,93 +113,113 @@ class MockData implements IMockData{
 		}
 	}
 
-	// The name function returns a random name from an array of 10 male and 10 female names
 	name (): string {
 		const names: string[] = ['John', 'Michael', 'Robert', 'David', 'James', 'William', 'Charles', 'Joseph', 'Richard', 'Daniel', 'Thomas', 'Matthew', 'Christopher', 'Andrew', 'Brian', 'Kevin', 'Anthony', 'Steven', 'Mark', 'Paul', 'Mary', 'Patricia', 'Jennifer', 'Linda', 'Elizabeth', 'Barbara', 'Susan', 'Jessica', 'Sarah', 'Karen', 'Nancy', 'Lisa', 'Margaret', 'Betty', 'Dorothy', 'Sandra', 'Ashley', 'Kimberly', 'Donna', 'Emily'];
 		const randomIndex: number = this.numberInRange(0, names.length - 1);
 		return names[randomIndex];
 	}
 
-	// The lastName function returns a random last name from an array of 20 last names
 	lastName (): string {
 	const lastNames: string[] = ['Smith', 'Johnson', 'Williams', 'Jones', 'Brown', 'Davis', 'Miller', 'Wilson', 'Moore', 'Taylor', 'Anderson', 'Thomas', 'Jackson', 'White', 'Harris', 'Martin', 'Thompson', 'Garcia', 'Martinez', 'Robinson'];
 		const randomIndex: number = this.numberInRange(0, lastNames.length - 1);
 		return lastNames[randomIndex];
 	}
 
-	// fullName function returns the full random name and surname
 	fullName (): string {
 		const lastNames: string = this.lastName();
 		const firstName: string = this.name();
 		return `${firstName} ${lastNames}`;
 	}
 
-	// The address function returns a random address
-	address(): string {
-		const streets = ['Main St', 'Oak Ave', 'Maple Ln', 'Cedar Rd', 'Elm St'];
-		const houseNumbers = ['123', '456', '789', '101', '202'];
-		const randomStreetIndex = Math.floor(Math.random() * streets.length);
-		const randomHouseNumberIndex = Math.floor(Math.random() * houseNumbers.length);
+	address(): IAddress {
+		const countries = ["USA", "Canada", "UK", "Australia", "Germany"];
+		const states = ["NY", "CA", "IL", "TX", "FL"];
+		const cities = ["New York", "Los Angeles", "Chicago", "Houston", "Miami"];
+		const streets = ["Main St", "Oak Ave", "Elm St", "Maple Rd", "Cedar Ln"];
+		const postalCodes = ["10001", "90001", "60601", "77001", "33101"];
 
-		const street = streets[randomStreetIndex];
-		const houseNumber = houseNumbers[randomHouseNumberIndex];
+		const randomIndex = Math.floor(Math.random() * streets.length);
 
-		return `${houseNumber} ${street}`;
+		return {
+			country: countries[randomIndex],
+			state: states[randomIndex],
+			city: cities[randomIndex],
+			street: streets[randomIndex],
+			postalCode: postalCodes[randomIndex],
+		};
 	}
 
-	// The email function returns a random email. Optional parameter name
+	password(): string {
+		let password = "";
+		const length = Math.floor(Math.random() * 9) + 8;
+		const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*?";
+
+		for (let i = 0; i < length; i++) {
+			const randomIndex = Math.floor(Math.random() * charset.length);
+			password += charset[randomIndex];
+		}
+
+		return password;
+	}
+
 	email (desiredName?: string): string {
-		const domains = ['example.com','test.net','sample.org','website.dev','myapp.io','company.biz','blog.info','store.shop','portfolio.design','community.online'];
+		const domains = ['example.com','test.net','sample.org','website.dev','myapp.io','company.biz','blog.info','store.shop','portfolio.design','community.online', 'gmail.com', 'yandex.ru', 'mail.ru'];
 		const randomIndex = this.numberInRange(0, domains.length - 1);
 		const randomName = this.name().toLowerCase();
 
 		if(desiredName){
-			return `${desiredName}@${domains[randomIndex]}`;
+			return `${desiredName.toLowerCase()}@${domains[randomIndex]}`;
 		}
 
 		return `${randomName}@${domains[randomIndex]}`;
 	}
 
-	// The phoneNumber functions return the phone number with country code that was passed to the function.
-	phoneNumber(countryCode: string): string {
-		let phoneNumber = '';
+	phoneNumber(): string {
+		const countries: string[] = ['us', 'uk', 'ru', 'by'];
+		let phoneNumber: string = '';
+		const countryCode: number = Math.floor(Math.random() * countries.length);
 
-		if (countryCode.toUpperCase() === 'US') {
-			phoneNumber = `+1${Math.floor(Math.random() * 10_000_000_000).toString().padStart(10, '0')}`;
-		} else if (countryCode.toUpperCase() === 'UK') {
-			phoneNumber = `+44${Math.floor(Math.random() * 10_000_000_000).toString().padStart(10, '0')}`;
-		} else if (countryCode.toUpperCase() === 'RU') {
-			phoneNumber = `+7${Math.floor(Math.random() * 10_000_000_000).toString().padStart(10, '0')}`;
-		} else if (countryCode.toUpperCase() === 'BY') {
-			phoneNumber = `+375${Math.floor(Math.random() * 1_000_000_000).toString().padStart(9, '0')}`;
-		} else {
-			phoneNumber = 'incorrect country, please write one of these countries: "US", "UK", "RU", "BY". if you want to add a specific country, please write to me in telegram @ker4ik13';
+		switch (countryCode){
+			case 0:
+				phoneNumber = `+1${Math.floor(Math.random() * 10_000_000_000).toString().padStart(10, '0')}`;
+				break;
+			case 1:
+				phoneNumber = `+44${Math.floor(Math.random() * 10_000_000_000).toString().padStart(10, '0')}`;
+				break;
+			case 2:
+				phoneNumber = `+7${Math.floor(Math.random() * 10_000_000_000).toString().padStart(10, '0')}`;
+				break;
+			case 3:
+				phoneNumber = `+375${Math.floor(Math.random() * 1_000_000_000).toString().padStart(9, '0')}`;
+				break;
+			default:
+				phoneNumber = `+7${Math.floor(Math.random() * 10_000_000_000).toString().padStart(10, '0')}`;
+				break;
 		}
 
 		return phoneNumber;
 	}
 
-	// The user function returns a user object consisting of the fields: firstName, lastName, phoneNumber and email
-	user(countryCode: string): User {
+	user(): IUser {
     	const firstName = this.name();
 
-		const user: User = {
+		const user: IUser = {
 			firstName,
 			lastName: this.lastName(),
-			phoneNumber: this.phoneNumber(countryCode),
+			phoneNumber: this.phoneNumber(),
 			email: this.email(firstName),
+			password: this.password(),
+			address: this.address(),
 		};
 
     	return user;
 	}
 
-	// product function returns a new product consisting of the fields: name, category, price and description
-	// Доработать продукт
-	product (): Product {
+	product (): IProduct {
 		const categories = ['Electronics', 'Clothing', 'Home', 'Beauty', 'Sports'];
 		const randomCategory = categories[Math.floor(Math.random() * categories.length)];
 
-		const product: Product = {
+		const product: IProduct = {
 			name: this.string(5),
 			category: randomCategory,
 			price: Math.floor(Math.random() * 10000) + 100,

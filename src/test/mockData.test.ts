@@ -1,9 +1,20 @@
 import mockData from "../lib/MockData";
+
+// Username
 const names: string[] = ['John', 'Michael', 'Robert', 'David', 'James', 'William', 'Charles', 'Joseph', 'Richard', 'Daniel', 'Thomas', 'Matthew', 'Christopher', 'Andrew', 'Brian', 'Kevin', 'Anthony', 'Steven', 'Mark', 'Paul', 'Mary', 'Patricia', 'Jennifer', 'Linda', 'Elizabeth', 'Barbara', 'Susan', 'Jessica', 'Sarah', 'Karen', 'Nancy', 'Lisa', 'Margaret', 'Betty', 'Dorothy', 'Sandra', 'Ashley', 'Kimberly', 'Donna', 'Emily'];
 const lastNames: string[] = ['Smith', 'Johnson', 'Williams', 'Jones', 'Brown', 'Davis', 'Miller', 'Wilson', 'Moore', 'Taylor', 'Anderson', 'Thomas', 'Jackson', 'White', 'Harris', 'Martin', 'Thompson', 'Garcia', 'Martinez', 'Robinson'];
-const streets = ['Main St', 'Oak Ave', 'Maple Ln', 'Cedar Rd', 'Elm St'];
-const houseNumbers = ['123', '456', '789', '101', '202'];
+
+// Address
+const countries = ["USA", "Canada", "UK", "Australia", "Germany"];
+const states = ["NY", "CA", "IL", "TX", "FL"];
+const cities = ["New York", "Los Angeles", "Chicago", "Houston", "Miami"];
+const streets = ["Main St", "Oak Ave", "Elm St", "Maple Rd", "Cedar Ln"];
+const postalCodes = ["10001", "90001", "60601", "77001", "33101"];
+
+// Email
 const domains = ['example.com','test.net','sample.org','website.dev','myapp.io','company.biz','blog.info','store.shop','portfolio.design','community.online'];
+
+// Product
 const categories = ['Electronics', 'Clothing', 'Home', 'Beauty', 'Sports'];
 
 
@@ -56,6 +67,17 @@ describe('return values must be numbers', () => {
     });
 });
 
+// Arrays
+describe('the returned array must be the correct length', () => {
+    test('the returned array must be the correct length', () => {
+        expect(mockData.stringArray(5)).toHaveLength(5);
+        expect(mockData.numberArray(7)).toHaveLength(7);
+        expect(mockData.stringArray(5)).toBeTruthy();
+        expect(mockData.numberArray(7)).toBeTruthy();
+    })
+});
+
+
 // Date:
 describe('the return value must be a date', () => {
     const firstDate = new Date(2023, 5, 23);
@@ -101,8 +123,11 @@ describe('return value must be from arrays', () => {
    
     // Address:
     test('return value must be from arrays', () => {
-        expect(streets.includes(mockData.address().split(' ')[0]));
-        expect(houseNumbers.includes(mockData.address().split(' ')[1]));
+        expect(countries.includes(mockData.address().country));
+        expect(states.includes(mockData.address().state));
+        expect(cities.includes(mockData.address().city));
+        expect(streets.includes(mockData.address().street));
+        expect(postalCodes.includes(mockData.address().postalCode));
     });
 
     // Email:
@@ -113,22 +138,29 @@ describe('return value must be from arrays', () => {
 
     // Phone number:
     test('return value must start with valid digits', () => {
-        expect(mockData.phoneNumber('ru')).toBeTruthy();
-        expect(mockData.phoneNumber('ru')[1]).toEqual('7');
-        expect(mockData.phoneNumber('us')[1]).toEqual('1');
-        expect(mockData.phoneNumber('uk')[1]).toEqual('4');
-        expect(mockData.phoneNumber('by')[1]).toEqual('3');
+        expect(mockData.phoneNumber()).toBeTruthy();
     });
+
+    // Password
+
+    test('return value must be string', () => {
+        expect(mockData.password()).toBeTruthy();
+    })
 });
 
 // Objects:
 describe('return value must be an object', () => {
     // User:
     test('the return value must be an object and contain the required fields', () => {
-        expect(names.includes(mockData.user('ru').firstName));
-        expect(lastNames.includes(mockData.user('ru').lastName));
-        expect(mockData.user('ru').phoneNumber[1]).toEqual('7');
-        expect(domains.includes(mockData.user('ru').email.split('@')[1]));
+        expect(names.includes(mockData.user().firstName));
+        expect(lastNames.includes(mockData.user().lastName));
+        expect(mockData.user().phoneNumber).toBeTruthy();
+        expect(domains.includes(mockData.user().email.split('@')[1]));
+        expect(countries.includes(mockData.user().address.country));
+        expect(states.includes(mockData.user().address.state));
+        expect(cities.includes(mockData.user().address.city));
+        expect(streets.includes(mockData.user().address.street));
+        expect(postalCodes.includes(mockData.user().address.postalCode));
     });
 
     // Product:
@@ -140,6 +172,4 @@ describe('return value must be an object', () => {
     });
 });
 
-
-
-
+console.log(mockData.password());

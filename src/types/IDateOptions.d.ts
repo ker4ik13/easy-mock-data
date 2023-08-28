@@ -1,11 +1,4 @@
-export interface Product {
-  name: string;
-  category: string;
-  price: number;
-  description: string;
-}
-
-export interface DateOptions {
+export interface IDateOptions {
 	/**
 	 * `returnStandartDate` returns the standard date new Date().
 	 */
@@ -20,11 +13,4 @@ export interface DateOptions {
 	 * `returnSeconds` returns the date as seconds since 1970.
 	 */
 	returnSeconds?: boolean,
-}
-
-export interface User {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: string;
 }

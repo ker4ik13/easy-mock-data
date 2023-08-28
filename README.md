@@ -1,86 +1,107 @@
-# Easy-Mock-Data: Генератор Моковых Данных
+# Easy-Mock-Data: Mock Data Generator
 
-> Удобный способ генерации моковых данных для тестирования и разработки. Вы можете использовать библиотеку для создания моковых строк, чисел, текстов, дат, имён, продуктов и пользователей с минимальными усилиями.
+> A convenient way to generate mock data for testing and development. You can use the library to create mock strings, numbers, texts, dates, names, products, and users with minimal effort.
 
-Полная поддержка TypeScript
+Full TypeScript Support
 
-- [Easy-Mock-Data: Генератор Моковых Данных](#easy-mock-data-генератор-моковых-данных)
-  - [Быстрый старт](#быстрый-старт)
-    - [Установка](#установка)
-    - [Импорт](#импорт)
-    - [Примеры Использования](#примеры-использования)
-    - [Поддержка и Обратная Связь](#поддержка-и-обратная-связь)
+- [RU Documentation](https://github.com/ker4ik13/easy-mock-data/wiki/Documentation-RU)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Import](#import)
+  - [Usage Examples](#usage-examples)
+  - [Support and Feedback](#support-and-feedback)
 
-## Быстрый старт
+## Getting Started
 
-### Установка
+### Installation
 
-Установите библиотеку **easy-mock-data** с помощью npm:
+Install the **easy-mock-data** library using npm:
 ```
-npm install easy-mock-data
+npm install --save-dev easy-mock-data
 ```
 
+### Import
 
-### Импорт
-
-Импортируйте ```mockData``` в проект:
+Import ```mockData``` into your project:
 
 ```javascript
 import { mockData } from 'easy-mock-data'
 ```
 
-### Примеры Использования
+
+### Usage Examples
 
 ```javascript
 const mockData = require('mock-data');
 
-// Генерация моковой строки длиной 10 символов
+// Generate a fake string of length 10
 const randomString = mockData.string(10); // OHKGxFarhs
 
-// Генерация мокового текста из 5 слов, первая буква в тексте заглавная
+// Generate a fake text with 5 words, capitalizing the first letter of each word
 const randomText = mockData.text(5, {
     capitalizeFirstLetter: true
 }); // Wildberry mango mango lemon wildberry
 
-// Генерация случайного числа из 3-х цифр
+// Generate a fake number with 3 digits
 const randomNumber = mockData.number(3); // 172
 
-// Генерация числа в заданном диапазоне
+// Generate a fake array of numbers
+const numberArray = mockData.numberArray(5) //  [32495, 8069, 74844, 9617, 81703]
+
+// Generate a fake array of strings
+const stringArray = mockData.stringArray(5) //  ['trlRvjW', 'RMfzv4C6Q', 'EFcwsSL', '7gFB3Z93U', 'l7wMHB9']
+
+// Generate a number within a specified range
 const randomNumberInRange = mockData.numberInRange(10, 50); // 26
 
-// Генерация даты в заданном диапазоне, вернет дату в формате ISO
+// Generate a date within a specified range, returns the date in ISO format
 const randomDate = mockData.dateInRange(new Date(2000, 0, 1), new Date(), {
     returnIsoDate: true,
 }); // 2006-11-23T02:10:48.935Z
 
-// Генерация мокового имени пользователя
+// Generate a fake user name
 const randomUserName = mockData.name(); // Mark
 
-// Генерация моковой фамилии пользователя
+// Generate a fake user last name
 const randomUserLastName = mockData.lastName(); // Martinez
 
-// Генерация мокового полного имени
+// Generate a fake full name
 const randomFullName = mockData.fullName(); // John Harris
 
-// Генерация мокового адреса
-const randomAddress = mockData.address(); // Main St 101
+// Generate a fake address
+const randomAddress = mockData.address(); 
+//   address: {
+//      country: 'USA',
+//      state: 'IL',
+//      city: 'New York',
+//      street: 'Main St',
+//      postalCode: '90001'}
 
-// Генерация мокового email с заданным именем
+// Generate a fake email with the given name
 const randomEmail = mockData.email('john'); // john@example.com
 
-// Генерация мокового номера телефона с заданным кодом страны
-const randomPhoneNumber = mockData.phoneNumber('ru'); // +75820672346
+// Generate a fake phone number
+const randomPhoneNumber = mockData.phoneNumber(); // +75820672346
 
-// Генерация мокового пользователя
-const randomUser = mockData.user('ru');
+// Generate a fake password
+const randomPass = mockData.password(); // 2?8hFgWk
+
+// Generate a fake user
+const randomUser = mockData.user();
 // {
 //    email: "Margaret@test.net"
 //    firstName: "Margaret"
 //    lastName: "Moore"
 //    phoneNumber: "+78622944804"
+//    address: {
+//       country: 'USA',
+//       state: 'IL',
+//       city: 'New York',
+//       street: 'Main St',
+//       postalCode: '90001'}
 // }
 
-// Генерация мокового продукта
+// Generate a fake product
 const randomProduct = mockData.product();
 // {
 //     name: GsgTa,
@@ -89,10 +110,10 @@ const randomProduct = mockData.product();
 //     description: 'Mango banana date honeydew date mango honeydew mango lemon grape mango cherry banana nectarine lemon honeydew grape date wildberry cherry'
 // }
 ```
-**Автор:** [ker4ik13](https://t.me/ker4ik13)
+**Author:** [ker4ik13](https://t.me/ker4ik13)
 
-### Поддержка и Обратная Связь
-Если у вас есть вопросы, проблемы или предложения по улучшению, вы можете создать новый Issue на странице репозитория https://github.com/ker4ik13/easy-mock-data/issues
+### Support and Feedback
+If you have any questions, issues, or suggestions for improvement, you can create a new Issue on the repository page at https://github.com/ker4ik13/easy-mock-data/issues
 
 
-[def]: #поддержка-и-обратная-связь
+[def]: #support-and-feedback

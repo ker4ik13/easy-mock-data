@@ -1,4 +1,7 @@
-import { User, Product, DateOptions } from "./interfaces";
+import { IUser } from "./IUser";
+import { IProduct } from "./IProduct";
+import { IDateOptions } from "./IDateOptions";
+import { IAddress } from "./IAddress";
 
 export interface IMockData {
 
@@ -35,6 +38,20 @@ export interface IMockData {
     }): string
 
     /**
+     * @returns {Array} an array of numbers in the specified range
+     * @param {number} length array length
+     * @example mockData.numberArray(5) return [52542, 5234, 73156, 4215, 1812]
+     */
+    numberArray (length: number): number[];
+
+    /**
+     * @returns {Array} an array of strings
+     * @param {number} length array length 
+     * @example mockData.stringArray(5) return ['fghsajfa, jsahda, fuwyrscas, fisufgsa, ogsjbda']
+     */
+    stringArray (length: number): string[];
+
+    /**
      * @returns {number} a random number in the range from the passed minimum and maximum values
      * @param {number} min minimum number
      * @param {number} max maximum number
@@ -44,7 +61,7 @@ export interface IMockData {
 
     /**
      * @returns {Date | number | string} a random date between the given start and end dates. The return value can be selected in the options.
-     * @param {DateOptions} options 1 of 3 parameters is required.
+     * @param {IDateOptions} options 1 of 3 parameters is required.
      * 
      * `returnStandartDate` returns the standard date new Date().
      * 
@@ -80,9 +97,16 @@ export interface IMockData {
 
     /**
      * @returns {string} a random address.
-     * @example mockData.address() return 'Maple Ln 101'
+     * @example mockData.address() return object IAddress
+     * 
      */
-    address(): string;
+    address(): IAddress;
+
+    /**
+     * @returns {string} random password, length from 8 to 16
+     * @example mockData.password() return 'Dfg245FSa4@!'
+     */
+    password (): string;
 
     /**
      * @returns a random email. 
@@ -93,30 +117,20 @@ export interface IMockData {
 
     /**
      * @returns the phone number with country code that was passed to the function.
-     * @param {string} countryCode can be 'US', 'UK', 'RU', 'BY'
-     * @example mockData.phoneNumber('ru') return '+74729527562'
+     * @example mockData.phoneNumber() return '+74729527562'
      */
-    phoneNumber(countryCode: string): string;
+    phoneNumber(): string;
 
     /**
-     * @returns {User} a new {@link User} object
-     * @param {string} countryCode can be 'US', 'UK', 'RU', 'BY'
-     * @example mockData.user() return {
-        firstName: 'John'
-        lastName: 'Martinez',
-        phoneNumber: '+74904672395',
-        email: 'john@myapp.io'}
+     * @returns {IUser} a new {@link IUser} object
+     * @example mockData.user() return object IUser
+       
      */
-    user(countryCode: string): User;
+    user(): IUser;
 
     /**
-     * @returns a new {@link Product} object
-     * @example mockData.product() return {
-        name: 'FseFa',
-        category: 'Electronics',
-        price: 4256,
-        description: 'DfsauheaidjasDASdasedsadaseEsa'
-        }
+     * @returns a new {@link IProduct} object
+     * @example mockData.product() return object IProduct
      */
-    product (): Product;
+    product (): IProduct;
 }

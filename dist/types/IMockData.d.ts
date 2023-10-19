@@ -2,6 +2,8 @@ import { IUser } from "./IUser";
 import { IProduct } from "./IProduct";
 import { IDateOptions } from "./IDateOptions";
 import { IAddress } from "./IAddress";
+import { INote } from "./INote";
+import { ITodo } from "./ITodo";
 
 export interface IMockData {
 
@@ -133,4 +135,28 @@ export interface IMockData {
      * @example mockData.product() return object IProduct
      */
     product (): IProduct;
+
+    /**
+     * @return a new {@link INote} object
+     * @example mockData.note() return object INote
+     */
+    note (): INote;
+
+    /**
+     * @return an array of {@link INote} objects
+     * @example mockData.note() return array of INote objects
+     */
+    notes (length: number): INote[];
+
+    /**
+     * @return a new {@link ITodo} object
+     * @example mockData.todo() return object ITodo
+     */
+    todo (): ITodo;
+
+    /**
+     * @return an array of {@link ITodo} objects
+     * @example mockData.todo() return array of ITodo objects
+     */
+    todos (length: number): ITodo[];
 }

@@ -170,6 +170,16 @@ describe('return value must be an object', () => {
         expect(mockData.product().price).toBeLessThan(10000);
         expect(mockData.product().price).toBeGreaterThan(100);
     });
-});
 
-console.log(mockData.password());
+    // Note:
+    test('the return value must be an object and contain the required fields', () => {
+        expect(mockData.note().content.length).toBeGreaterThanOrEqual(5);
+        expect(mockData.notes(5)).toHaveLength(5);
+    })
+
+    // Todo:
+     test('the return value must be an object and contain the required fields', () => {
+        expect(mockData.todo().content.length).toBeGreaterThanOrEqual(5);
+        expect(mockData.todos(5)).toHaveLength(5);
+    })
+});

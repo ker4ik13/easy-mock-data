@@ -3,6 +3,8 @@ import { IDateOptions } from "../types/IDateOptions";
 import { IUser } from "../types/IUser";
 import { IProduct } from "../types/IProduct";
 import { IAddress } from "../types/IAddress";
+import { INote } from "../types/INote";
+import { ITodo } from "../types/ITodo";
 
 class MockData implements IMockData{
 
@@ -229,6 +231,51 @@ class MockData implements IMockData{
 		};
 
 		return product;
+	}
+
+	note (): INote {
+		const note: INote = {
+			id: this.string(10),
+			title: this.string(this.numberInRange(5, 20), {isFirstLetterCapitalized: true}),
+			content: this.text(this.numberInRange(5, 20)),
+			createdTime: this.dateInRange(new Date(2010, 1, 1), new Date(), {returnIsoDate: true}).toString(),
+			updatedTime: new Date().toISOString(),
+		}
+
+		return note;
+	}
+
+	notes (length: number): INote[] {
+		const notes: INote[] = [];
+
+		for(let i = 0; i < length; i++){
+			notes.push(this.note());
+		}
+
+		return notes;
+	}
+
+	todo (): ITodo {
+			const todo: ITodo = {
+				id: this.string(10),
+				title: this.string(this.numberInRange(5, 20), {isFirstLetterCapitalized: true}),
+				content: this.text(this.numberInRange(5, 20)),
+				createdTime: this.dateInRange(new Date(2010, 1, 1), new Date(), {returnIsoDate: true}).toString(),
+				updatedTime: new Date().toISOString(),
+				isCompleted: Math.random() > 0.5 ? true : false,
+			}
+
+			return todo;
+	}
+
+	todos (length: number): ITodo[] {
+		const todos: ITodo[] = [];
+
+		for(let i = 0; i < length; i++){
+			todos.push(this.todo());
+		}
+
+		return todos;
 	}
 }
 
